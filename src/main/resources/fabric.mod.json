@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "actionlib",
+  "version": "${version}",
+  "name": "ActionLib",
+  "description": "",
+  "authors": [
+    "kitUIN"
+  ],
+  "contact": {
+    "homepage": "https://github.com/kitUIN/ActionLib",
+    "sources": "https://github.com/kitUIN/ActionLib",
+    "issues": "https://github.com/kitUIN/ActionLib/issues",
+    "email": "kulujun@gmail.com"
+  },
+  "license": "MIT",
+  "icon": "assets/actionlib/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "io.github.kituin.actionlib.client.ActionLibClient"
+    ],
+    "main": [
+      "io.github.kituin.actionlib.ActionLib"
+    ]
+  },
+  "mixins": [
+    "actionlib.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": ">=1.16.5-"
+  }
+}
