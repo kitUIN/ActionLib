@@ -71,30 +71,28 @@ jar {
 }
 
 // configure the maven publication
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
-
-    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-    repositories {
-        // Add repositories to publish to here.
-        // Notice: This block does NOT have the same function as the block in the top level.
-        // The repositories here will be used for publishing your artifact, not for
-        // retrieving dependencies.
-    }
-}
+//publishing {
+//    publications {
+//        mavenJava(MavenPublication) {
+//            from components.java
+//        }
+//    }
+//
+//    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+//    repositories {
+//        // Add repositories to publish to here.
+//        // Notice: This block does NOT have the same function as the block in the top level.
+//        // The repositories here will be used for publishing your artifact, not for
+//        // retrieving dependencies.
+//    }
+//}
 publishing {
     publications {
         mavenJava(MavenPublication) {
             artifactId project.name
             groupId group
             version version
-            artifact jar
-            artifact sourcesJar
-            artifact javadocJar
+            from components.java
             pom {
                 name = project.name
                 description = 'Minecraft HoverEvent Action Lib'
