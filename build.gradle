@@ -51,6 +51,14 @@ tasks.withType(JavaCompile).configureEach {
         it.options.release.set(targetJavaVersion)
     }
 }
+javadoc {
+    options.addStringOption("tag", "date:a:Date:")
+    options.addStringOption("charset", "UTF-8")
+    options.addStringOption("encoding", "UTF-8")
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
 
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
