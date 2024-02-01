@@ -3,7 +3,7 @@
   "id": "actionlib",
   "version": "${version}",
   "name": "ActionLib",
-  "description": "",
+  "description": "Lib that Register HoverEvent.Action",
   "authors": [
     "kitUIN"
   ],
