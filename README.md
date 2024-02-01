@@ -5,7 +5,7 @@
 
 ### Fabric
 ```
-modImplementation("io.github.kituin:ActionLib:0.6.0-fabric")
+modImplementation("io.github.kituin:ActionLib:0.6.1-fabric")
 ```
 当然你也可以添加`include`进行`jarInJar`
 
