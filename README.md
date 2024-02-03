@@ -1,5 +1,9 @@
 # ActionLib
-提供HoverEvent.Action的注册,注册后可以在成书中使用,以及/tellraw的Json模式生成
+提供HoverEvent.Action的注册
+
+注册后可实现
+- 成书中使用
+- /tellraw的Json模式生成
 
 ## 🤗使用
 
