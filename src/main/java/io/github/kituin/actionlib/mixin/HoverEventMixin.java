@@ -1,18 +1,23 @@
 package io.github.kituin.actionlib.mixin;
 
 import com.google.common.collect.Lists;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.Lifecycle;
 import io.github.kituin.actionlib.ActionLib;
 import io.github.kituin.actionlib.ActionRegisterApi;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.minecraft.text.HoverEvent;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
+import net.minecraft.text.Text;
+import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.dynamic.Codecs;
+import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static io.github.kituin.actionlib.ActionLib.MOD_ID;
@@ -26,19 +31,36 @@ import static io.github.kituin.actionlib.ActionLib.MOD_ID;
  */
 @Mixin(HoverEvent.Action.class)
 public abstract class HoverEventMixin {
+    @Final
+    @Mutable
+    @Shadow
+    public static Codec<HoverEvent.Action<?>> CODEC;
+    @Shadow @Final public static HoverEvent.Action<HoverEvent.ItemStackContent> SHOW_ITEM;
+    @Shadow @Final public static HoverEvent.Action<HoverEvent.EntityContent> SHOW_ENTITY;
+    @Shadow @Final public static HoverEvent.Action<Text> SHOW_TEXT;
 
-    @ModifyArg(method = "<clinit>",
-            at = @At(value = "INVOKE",
-                target = "Ljava/util/stream/Stream;of([Ljava/lang/Object;)Ljava/util/stream/Stream;",
-                remap = false
-            )
+    @Unique
+    private static DataResult<HoverEvent.Action<?>> validate(@Nullable HoverEvent.Action<?> action) {
+        if (action == null) {
+            return DataResult.error(() -> "Unknown action");
+        } else {
+            return !action.isParsable() ? DataResult.error(() -> "Action not allowed: " + action) : DataResult.success(action, Lifecycle.stable());
+        }
+    }
+    @Inject(
+            method = "<clinit>",
+            at = @At(value = "RETURN"
+                    )
     )
-    private static Object[] injectedHoverEvent(Object[] values) {
-        ArrayList<Object> temp = new ArrayList<>(Arrays.asList(values));
-        temp.addAll(registerAll());
+    private static void injectedHoverEvent(CallbackInfo ci) {
+        CODEC = Codecs.validate(StringIdentifiable.createBasicCodec(() ->
+        {
+            List<HoverEvent.Action> temp = Lists.newArrayList(SHOW_TEXT,SHOW_ITEM,SHOW_ENTITY);
+            temp.addAll(registerAll());
+            ActionLib.LOGGER.info("Register All HoverEvent Counts: {}", temp.size());
+            return temp.toArray(new HoverEvent.Action[temp.size() - 1]);
+        }), (HoverEventMixin::validate));
 
-        ActionLib.LOGGER.info("Register All HoverEvent Counts: {}", temp.size());
-        return temp.toArray();
     }
 
     /**
