@@ -222,6 +222,7 @@ publishing {
             groupId group
             version version
             from components.java
+
             pom {
                 name = project.name
                 description = 'Minecraft HoverEvent Action Lib'
@@ -243,6 +244,10 @@ publishing {
                     connection = 'scm:git:git://github.com/kitUIN/ActionLib.git'
                     developerConnection = 'scm:git:ssh://github.com/kitUIN/ActionLib.git'
                     url = 'https://github.com/kitUIN/ActionLib'
+                }
+
+                withXml {
+                    asNode().remove(asNode().get('dependencies'))
                 }
             }
         }
