@@ -15,7 +15,7 @@ public interface IActionRegisterApi {
     /**
      * registerHoverEventAction
      *
-     * @return {@link List<HoverEvent.Action>}
+     * @return List HoverEvent.Action
      */
     List<HoverEvent.Action> registerHoverEventAction();
 }
