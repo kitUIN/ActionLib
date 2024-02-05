@@ -45,3 +45,32 @@ public class ActionLibIntegration implements ActionRegisterApi {
 +    "actionlib": ["github.kituin.chatimage.integration.ActionLibIntegration"]
   },
 ```
+
+
+
+### Forge
+```
+// forge 1.16.5-1.19.4
+modImplementation("io.github.kituin:ActionLib:0.6.2-forge")
+
+// forge 1.20-1.20.2
+modImplementation("io.github.kituin:ActionLib:0.9.1-forge")
+
+// forge 1.20.3+
+modImplementation("io.github.kituin:ActionLib:1.0.1-forge")
+```
+
+
+新建类继承`IActionRegisterApi`,并使用注解`@AlPlugin`
+
+```java
+@AlPlugin
+public class ActionLibIntegration implements IActionRegisterApi {
+    @Override
+    public List<HoverEvent.Action> registerHoverEventAction() {
+        return List.of(SHOW_IMAGE);
+    }
+}
+```
+`SHOW_IMAGE`为你定义的`HoverEvent.Action`,模组`ChatImage`中的[HoverEvent.Action示例](https://github.com/kitUIN/ChatImage/blob/f83113414199aea2b75a8b283e87fa7cf3d53d49/src/main/java/github/kituin/chatimage/tool/ChatImageStyle.java#L19)
+```
