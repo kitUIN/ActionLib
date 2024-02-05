@@ -73,4 +73,5 @@ public class ActionLibIntegration implements IActionRegisterApi {
 }
 ```
 `SHOW_IMAGE`为你定义的`HoverEvent.Action`,模组`ChatImage`中的[HoverEvent.Action示例](https://github.com/kitUIN/ChatImage/blob/f83113414199aea2b75a8b283e87fa7cf3d53d49/src/main/java/github/kituin/chatimage/tool/ChatImageStyle.java#L19)
-```
+
+
