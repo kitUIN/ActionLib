@@ -1,7 +1,8 @@
 package io.github.kituin.actionlib;
 
 
-import net.minecraft.util.text.event.HoverEvent;
+
+import net.minecraft.network.chat.HoverEvent;
 
 import java.util.List;
 

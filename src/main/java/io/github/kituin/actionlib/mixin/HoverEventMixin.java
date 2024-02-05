@@ -2,9 +2,9 @@ package io.github.kituin.actionlib.mixin;
 
 import com.google.common.collect.Lists;
 import io.github.kituin.actionlib.ActionLib;
-import io.github.kituin.actionlib.IActionRegisterApi;
 import io.github.kituin.actionlib.ForgePluginFinder;
-import net.minecraft.util.text.event.HoverEvent;
+import io.github.kituin.actionlib.IActionRegisterApi;
+import net.minecraft.network.chat.HoverEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
