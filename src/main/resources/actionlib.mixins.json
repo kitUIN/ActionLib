@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.kituin.actionlib.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "ActionLib.refmap.json",
+  "mixins": [
+    "HoverEventMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
