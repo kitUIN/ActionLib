@@ -50,14 +50,14 @@ public class ActionLibIntegration implements ActionRegisterApi {
 
 ### Forge
 ```
-// forge 1.16.5-1.19.4
-modImplementation("io.github.kituin:ActionLib:0.6.2-forge")
+// forge 1.16.5
+modImplementation("io.github.kituin:ActionLib:0.6.4-forge")
 
-// forge 1.20-1.20.2
-modImplementation("io.github.kituin:ActionLib:0.9.1-forge")
+// forge 1.17-1.20.2
+modImplementation("io.github.kituin:ActionLib:0.9.4-forge")
 
 // forge 1.20.3+
-modImplementation("io.github.kituin:ActionLib:1.0.1-forge")
+modImplementation("io.github.kituin:ActionLib:1.0.3-forge")
 ```
 
 
