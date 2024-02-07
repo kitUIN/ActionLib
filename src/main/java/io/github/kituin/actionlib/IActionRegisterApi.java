@@ -10,7 +10,7 @@ import java.util.List;
  * @author kitUIN
  * @date  2024/01/29
  */
-public interface ActionRegisterApi {
+public interface IActionRegisterApi {
 
     /**
      * registerHoverEventAction

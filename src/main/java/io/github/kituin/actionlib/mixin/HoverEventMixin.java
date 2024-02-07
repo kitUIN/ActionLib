@@ -2,7 +2,7 @@ package io.github.kituin.actionlib.mixin;
 
 import com.google.common.collect.Lists;
 import io.github.kituin.actionlib.ActionLib;
-import io.github.kituin.actionlib.ActionRegisterApi;
+import io.github.kituin.actionlib.IActionRegisterApi;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.minecraft.text.HoverEvent;
@@ -50,11 +50,11 @@ public abstract class HoverEventMixin {
     private static List<HoverEvent.Action> registerAll()
     {
         List<HoverEvent.Action> hoverEventActions = Lists.newArrayList();
-        FabricLoader.getInstance().getEntrypointContainers(MOD_ID, ActionRegisterApi.class).forEach(entrypoint -> {
+        FabricLoader.getInstance().getEntrypointContainers(MOD_ID, IActionRegisterApi.class).forEach(entrypoint -> {
             ModMetadata metadata = entrypoint.getProvider().getMetadata();
             String modId = metadata.getId();
             try {
-                ActionRegisterApi api = entrypoint.getEntrypoint();
+                IActionRegisterApi api = entrypoint.getEntrypoint();
                 List<HoverEvent.Action> actions = api.registerHoverEventAction();
                 hoverEventActions.addAll(actions);
                 ActionLib.LOGGER.info("Mod {} Add {} New HoverEvent",modId,actions.size());
