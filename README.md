@@ -18,10 +18,10 @@ modImplementation("io.github.kituin:ActionLib:1.0.2-fabric")
 
 当然你也可以添加`include`进行`jarInJar`
 
-新建类继承`ActionRegisterApi`
+新建类继承`IActionRegisterApi`
 
 ```java
-public class ActionLibIntegration implements ActionRegisterApi {
+public class ActionLibIntegration implements IActionRegisterApi {
     @Override
     public List<HoverEvent.Action> registerHoverEventAction() {
         return List.of(SHOW_IMAGE);
