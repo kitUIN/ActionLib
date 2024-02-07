@@ -10,10 +10,10 @@
 ### Fabric
 ```
 // fabric 1.16.5-1.20.2
-modImplementation("io.github.kituin:ActionLib:0.6.1-fabric")
+modImplementation("io.github.kituin:ActionLib:0.6.3-fabric")
 
 // fabric 1.20.3+
-modImplementation("io.github.kituin:ActionLib:1.0.1-fabric")
+modImplementation("io.github.kituin:ActionLib:1.0.2-fabric")
 ```
 
 当然你也可以添加`include`进行`jarInJar`
