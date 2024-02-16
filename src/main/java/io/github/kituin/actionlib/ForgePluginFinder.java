@@ -1,6 +1,8 @@
 package io.github.kituin.actionlib;
 
 import net.neoforged.fml.ModList;
+import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.fml.loading.moddiscovery.ModFileInfo;
 import net.neoforged.neoforgespi.language.ModFileScanData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -26,10 +28,10 @@ public final class ForgePluginFinder {
     @SuppressWarnings("SameParameterValue")
     private static <T> List<T> getInstances(Class<?> annotationClass, Class<T> instanceClass) {
         Type annotationType = Type.getType(annotationClass);
-        List<ModFileScanData> allScanData = ModList.get().getAllScanData();
+
         Set<String> pluginClassNames = new LinkedHashSet<>();
-        for (ModFileScanData scanData : allScanData) {
-            Iterable<ModFileScanData.AnnotationData> annotations = scanData.getAnnotations();
+        for (ModFileInfo info : FMLLoader.getLoadingModList().getModFiles()) {
+            Iterable<ModFileScanData.AnnotationData> annotations = info.getFile().getScanResult().getAnnotations();
             for (ModFileScanData.AnnotationData a : annotations) {
                 if (Objects.equals(a.annotationType(), annotationType)) {
                     String memberName = a.memberName();
