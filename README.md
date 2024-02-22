@@ -57,7 +57,7 @@ modImplementation("io.github.kituin:ActionLib:0.6.4-forge")
 modImplementation("io.github.kituin:ActionLib:0.9.4-forge")
 
 // forge 1.20.3+
-modImplementation("io.github.kituin:ActionLib:1.0.3-forge")
+modImplementation("io.github.kituin:ActionLib:1.0.4-forge")
 ```
 
 
