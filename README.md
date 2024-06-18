@@ -6,7 +6,12 @@
 - /tellraw的Json模式生成
 
 ## 🤗使用
-
+```gradle
+maven {
+    name "kituinMavenReleases"
+    url "https://maven.kituin.fun/releases"
+}
+```
 ### Fabric
 ```
 // fabric 1.16.5-1.20.2
