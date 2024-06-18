@@ -12,17 +12,20 @@ maven {
     url "https://maven.kituin.fun/releases"
 }
 ```
+```
+modImplementation("io.github.kituin:ActionLib:{action_lib_version}")
+```
+| mc | ActionLib | loader |
+| --- | --- | --- |
+| 1.16.5-1.20.2 | 0.6.3-fabric | Fabric |
+| 1.20.3/1.20.4 | 1.0.2-fabric | Fabric |
+| 1.20.5+ | 1.1.1-fabric | Fabric |
+| 1.16.5 | 0.6.4-forge | Forge |
+| 1.17-1.20.2 | 0.9.4-fabric | Forge |
+| 1.20.3/1.20.4 | 1.0.4-forge | Forge |
+| 1.20.2 | 1.6.1-neoforge | NeoForge |
+| 1.20.3/1.20.4 | 1.9.2-neoforge | NeoForge |
 ### Fabric
-```
-// fabric 1.16.5-1.20.2
-modImplementation("io.github.kituin:ActionLib:0.6.3-fabric")
-
-// fabric 1.20.3/1.20.4
-modImplementation("io.github.kituin:ActionLib:1.0.2-fabric")
-
-// fabric 1.20.5+
-modImplementation("io.github.kituin:ActionLib:1.1.1-fabric")
-```
 
 当然你也可以添加`include`进行`jarInJar`
 
@@ -57,17 +60,6 @@ public class ActionLibIntegration implements IActionRegisterApi {
 
 
 ### Forge
-```
-// forge 1.16.5
-modImplementation("io.github.kituin:ActionLib:0.6.4-forge")
-
-// forge 1.17-1.20.2
-modImplementation("io.github.kituin:ActionLib:0.9.4-forge")
-
-// forge 1.20.3+
-modImplementation("io.github.kituin:ActionLib:1.0.4-forge")
-```
-
 
 新建类继承`IActionRegisterApi`,并使用注解`@AlPlugin`
 
@@ -84,14 +76,6 @@ public class ActionLibIntegration implements IActionRegisterApi {
 
 
 ### NeoForge
-```
-// neoforge 1.20.2
-modImplementation("io.github.kituin:ActionLib:1.6.1-neoforge")
-
-// neoforge 1.20.3+
-modImplementation("io.github.kituin:ActionLib:1.9.2-neoforge")
-```
-
 
 新建类继承`IActionRegisterApi`,并使用注解`@AlPlugin`
 
