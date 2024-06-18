@@ -23,6 +23,7 @@ modImplementation("io.github.kituin:ActionLib:{action_lib_version}")
 | 1.16.5 | 0.6.4-forge | Forge |
 | 1.17-1.20.2 | 0.9.4-fabric | Forge |
 | 1.20.3/1.20.4 | 1.0.4-forge | Forge |
+| 1.20.6+ | 1.2.2-forge | Forge |
 | 1.20.2 | 1.6.1-neoforge | NeoForge |
 | 1.20.3/1.20.4 | 1.9.2-neoforge | NeoForge |
 | 1.20.5+ | 1.10.1-neoforge | NeoForge |
