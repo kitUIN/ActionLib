@@ -144,7 +144,7 @@ tasks.withType(ProcessResources).configureEach {
     }
 }
 
-// Example configuration to allow publishing using the maven-publish plugin
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -152,7 +152,7 @@ publishing {
             groupId group
             version version
             from components.java
-
+//            artifact javadocJar
             pom {
                 name = project.name
                 description = 'Minecraft HoverEvent Action Lib'
@@ -182,19 +182,20 @@ publishing {
         maven {
             name = project.name
             if (project.version.toString().endsWith("-SNAPSHOT")) {
-                url = "https://s01.oss.sonatype.org/content/repositories/snapshots"
+                url = "https://maven.kituin.fun/snapshots"
             } else {
-                url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                url = "https://maven.kituin.fun/releases"
             }
+//            credentials(PasswordCredentials)
             credentials {
-                username = findProperty("ossrhUsername") ?: System.getenv("OSSRH_USERNAME")
-                password = findProperty("ossrhPassword") ?: System.getenv("OSSRH_PASSWORD")
+                username = findProperty("user") ?: System.getenv("KITUIN_USERNAME")
+                password = findProperty("pwd") ?: System.getenv("KITUIN_PASSWORD")
+            }
+            authentication {
+                basic(BasicAuthentication)
             }
         }
     }
-}
-signing {
-    sign(publishing.publications.mavenJava)
 }
 
 tasks.withType(JavaCompile).configureEach {
