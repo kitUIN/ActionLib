@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'fabric-loom' version '1.5-SNAPSHOT'
+    id 'fabric-loom' version '1.6-SNAPSHOT'
     id 'maven-publish'
     id 'signing'
 }
@@ -36,11 +36,12 @@ processResources {
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version,
-                "loader_version": project.loader_version
+                "loader_version": project.loader_version,
+                "require_version":project.require_version
     }
 }
 
-def targetJavaVersion = 8
+def targetJavaVersion = 21
 tasks.withType(JavaCompile).configureEach {
     // ensure that the encoding is set to UTF-8, no matter what the system default is
     // this fixes some edge cases with special characters not displaying correctly
@@ -78,22 +79,6 @@ jar {
     }
 }
 
-// configure the maven publication
-//publishing {
-//    publications {
-//        mavenJava(MavenPublication) {
-//            from components.java
-//        }
-//    }
-//
-//    // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-//    repositories {
-//        // Add repositories to publish to here.
-//        // Notice: This block does NOT have the same function as the block in the top level.
-//        // The repositories here will be used for publishing your artifact, not for
-//        // retrieving dependencies.
-//    }
-//}
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -101,6 +86,7 @@ publishing {
             groupId group
             version version
             from components.java
+//            artifact javadocJar
             pom {
                 name = project.name
                 description = 'Minecraft HoverEvent Action Lib'
@@ -130,18 +116,18 @@ publishing {
         maven {
             name = project.name
             if (project.version.toString().endsWith("-SNAPSHOT")) {
-                url = "https://s01.oss.sonatype.org/content/repositories/snapshots"
+                url = "https://maven.kituin.fun/snapshots"
             } else {
-                url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                url = "https://maven.kituin.fun/releases"
             }
+//            credentials(PasswordCredentials)
             credentials {
-                username = findProperty("ossrhUsername") ?: System.getenv("OSSRH_USERNAME")
-                password = findProperty("ossrhPassword") ?: System.getenv("OSSRH_PASSWORD")
+                username = findProperty("user") ?: System.getenv("KITUIN_USERNAME")
+                password = findProperty("pwd") ?: System.getenv("KITUIN_PASSWORD")
+            }
+            authentication {
+                basic(BasicAuthentication)
             }
         }
     }
-}
-
-signing {
-    sign(publishing.publications.mavenJava)
 }

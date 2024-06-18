@@ -4,10 +4,10 @@
   "package": "io.github.kituin.actionlib.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "HoverEventAccessor",
     "HoverEventMixin"
   ],
   "client": [
-
   ],
   "injectors": {
     "defaultRequire": 1
