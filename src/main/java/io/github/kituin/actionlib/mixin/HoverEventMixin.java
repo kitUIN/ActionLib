@@ -36,28 +36,20 @@ public abstract class HoverEventMixin {
     @Shadow @Final public static HoverEvent.Action<HoverEvent.EntityTooltipInfo> SHOW_ENTITY;
     @Shadow @Final public static HoverEvent.Action<Component> SHOW_TEXT;
 
-    @Unique
-    private static DataResult<HoverEvent.Action<?>> actionlib$validate(@Nullable HoverEvent.Action<?> action) {
-        if (action == null) {
-            return DataResult.error(() -> "Unknown action");
-        } else {
-            return !action.isAllowedFromServer() ? DataResult.error(() -> "Action not allowed: " + action) : DataResult.success(action, Lifecycle.stable());
-        }
-    }
+
     @Inject(
             method = "<clinit>",
             at = @At(value = "RETURN"
             )
     )
     private static void injectedHoverEvent(CallbackInfo ci) {
-        CODEC = ExtraCodecs.validate(StringRepresentable.fromValues(() ->
+        CODEC = StringRepresentable.fromValues(() ->
         {
-            List<HoverEvent.Action> temp = Lists.newArrayList(SHOW_TEXT,SHOW_ITEM,SHOW_ENTITY);
+            List<HoverEvent.Action> temp = Lists.newArrayList(SHOW_TEXT, SHOW_ITEM, SHOW_ENTITY);
             temp.addAll(actionlib$registerAll());
             ActionLib.LOGGER.info("Register All HoverEvent Counts: {}", temp.size());
-            return temp.toArray(new HoverEvent.Action[temp.size() - 1]);
-        }), (HoverEventMixin::actionlib$validate));
-
+            return temp.toArray(new HoverEvent.Action<?>[temp.size() - 1]);
+        }).validate(HoverEventAccessor::invokeValidate);
     }
 
     /**
