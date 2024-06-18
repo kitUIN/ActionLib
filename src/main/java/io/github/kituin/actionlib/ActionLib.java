@@ -12,5 +12,6 @@ public class ActionLib {
     public static final Logger LOGGER = LogManager.getLogger();
 
     public ActionLib() {
+        LOGGER.info("ActionLib loaded");
     }
 }
