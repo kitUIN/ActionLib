@@ -17,8 +17,11 @@ maven {
 // fabric 1.16.5-1.20.2
 modImplementation("io.github.kituin:ActionLib:0.6.3-fabric")
 
-// fabric 1.20.3+
+// fabric 1.20.3/1.20.4
 modImplementation("io.github.kituin:ActionLib:1.0.2-fabric")
+
+// fabric 1.20.5+
+modImplementation("io.github.kituin:ActionLib:1.1.1-fabric")
 ```
 
 当然你也可以添加`include`进行`jarInJar`
