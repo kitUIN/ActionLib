@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "ActionLib.refmap.json",
   "mixins": [
+    "HoverEventAccessor",
     "HoverEventMixin"
   ],
   "client": [
